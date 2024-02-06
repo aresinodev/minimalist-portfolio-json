@@ -1,0 +1,222 @@
+{
+  "basics": {
+    "name": "Aarón Resino Jiménez",
+    "label": "Frontend developer con más de 12 años de experiencia en el sector del desarrollo de software",
+    "image": "https://avatars.githubusercontent.com/u/9294060?v=4",
+    "email": "aresinodeveloper@gmail.com",
+    "phone": "+34 645847277",
+    "url": "https://aresino.dev",
+    "summary": "+12 años de experiencia en el desarrollo, actualmente en el puesto de Frontend developer. Vivo en Talavera de la Reina, España. He trabajando en múltiples proyectos de distintos sectores como aseguradoras, sanidad, bancario, etc.",
+    "location": {
+      "address": "",
+      "postalCode": "45600",
+      "city": "Talavera de la Reina",
+      "countryCode": "ES",
+      "region": "España"
+    },
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "username": "aaronresino",
+        "url": "https://linkedin.com/in/aaronresino"
+      },
+      {
+        "network": "X",
+        "username": "aaronresino_7",
+        "url": "https://x.com/aaronresino_7"
+      },
+      {
+        "network": "Github",
+        "username": "aaRonRJ",
+        "url": "https://github.com/aaRonRJ"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "Knowmad mood",
+      "position": "Frontend developer",
+      "url": "https://www.knowmadmood.com/es",
+      "startDate": "2021-06-01",
+      "endDate": null,
+      "summary": "Trabajando en proyectos con Angular 12+"
+    },
+    {
+      "name": "Quantum Studio",
+      "position": "Frontend developer",
+      "url": "https://www.quantumstudio.es/",
+      "startDate": "2018-10-01",
+      "endDate": "2021-06-01",
+      "summary": "Trabajando en proyectos con Angular 12+ e Ionic"
+    },
+    {
+      "name": "Grupo R. Franco",
+      "position": "Frontend developer",
+      "url": "https://www.rfranco.com/",
+      "startDate": "2017-11-01",
+      "endDate": "2018-11-01",
+      "summary": "Trabajando en el desarrollo y mantenimiento de la plataforma de apuestas deportivas Wannabet"
+    }
+  ],
+  "volunteer": [
+    {
+      "organization": "Organization",
+      "position": "Volunteer",
+      "url": "https://organization.com/",
+      "startDate": "2012-01-01",
+      "endDate": "2013-01-01",
+      "summary": "Description…",
+      "highlights": ["Awarded 'Volunteer of the Month'"]
+    }
+  ],
+  "education": [
+    {
+      "institution": "University",
+      "url": "https://institution.com/",
+      "area": "Software Development",
+      "studyType": "Bachelor",
+      "startDate": "2011-01-01",
+      "endDate": "2013-01-01",
+      "score": "4.0",
+      "courses": ["DB1101 - Basic SQL"]
+    }
+  ],
+  "awards": [
+    {
+      "title": "Award",
+      "date": "2014-11-01",
+      "awarder": "Company",
+      "summary": "There is no spoon."
+    }
+  ],
+  "certificates": [
+    {
+      "name": "Certificate",
+      "date": "2021-11-07",
+      "issuer": "Company",
+      "url": "https://certificate.com"
+    }
+  ],
+  "publications": [
+    {
+      "name": "Publication",
+      "publisher": "Company",
+      "releaseDate": "2014-10-01",
+      "url": "https://publication.com",
+      "summary": "Description…"
+    }
+  ],
+  "skills": [
+    {
+      "name": "HTML",
+      "level": "Master",
+      "keywords": [
+        "Desarrollo Web", "Frontend"
+      ]
+    },
+    {
+      "name": "CSS",
+      "level": "Master",
+      "keywords": [
+        "Desarrollo Web", "Frontend", "Diseño Responsive"
+      ]
+    },
+    {
+      "name": "JavaScript",
+      "level": "Master",
+      "keywords": [
+        "Desarrollo Web", "Frontend", "Backend", "Fullstack"
+      ]
+    },
+    {
+      "name": "Tailwind",
+      "level": "Avanzado",
+      "keywords": [
+        "Desarrollo Web", "Frontend", "CSS Framework", "Diseño Responsive"
+      ]
+    },
+    {
+      "name": "TypeScript",
+      "level": "Avanzado",
+      "keywords": [
+        "Desarrollo Web", "Frontend", "Backend", "JavaScript Superset"
+      ]
+    },
+    {
+      "name": "Node",
+      "level": "Avanzado",
+      "keywords": [
+        "Desarrollo Web", "Backend", "JavaScript", "Servidor"
+      ]
+    },
+    {
+      "name": "MySQL",
+      "level": "Avanzado",
+      "keywords": [
+        "Bases de Datos", "SQL", "Almacenamiento de Datos", "Backend"
+      ]
+    },
+    {
+      "name": "Git",
+      "level": "Avanzado",
+      "keywords": [
+        "Control de Versiones", "Colaboración", "Código Fuente"
+      ]
+    },
+    {
+      "name": "GitHub",
+      "level": "Avanzado",
+      "keywords": [
+        "Control de Versiones", "Colaboración", "Código Fuente", "Git"
+      ]
+    },
+    {
+      "name": "Angular",
+      "level": "Avanzado",
+      "keywords": [
+        "Desarrollo Web", "Frontend"
+      ]
+    },
+    {
+      "name": "React",
+      "level": "Avanzado",
+      "keywords": [
+        "Desarrollo Web", "Frontend", "JavaScript Library", "UI"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "Spanish",
+      "fluency": "Native speaker"
+    },
+    {
+      "language": "English",
+      "fluency": "Technical"
+    }
+  ],
+  "interests": [
+    {
+      "name": "Wildlife",
+      "keywords": ["Ferrets", "Unicorns"]
+    }
+  ],
+  "references": [
+    {
+      "name": "Jane Doe",
+      "reference": "Reference…"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Planets fact site",
+      "isActive": true,
+      "description": "Información de los planetas del sistema solar",
+      "highlights": [
+        "Responsive design",
+        "Desarrollado con Qwik"
+      ],
+      "url": "https://stupendous-axolotl-064aa1.netlify.app/"
+    }
+  ]
+}

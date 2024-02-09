@@ -58,52 +58,22 @@
       "summary": "Trabajando en el desarrollo y mantenimiento de la plataforma de apuestas deportivas Wannabet"
     }
   ],
-  "volunteer": [
-    {
-      "organization": "Organization",
-      "position": "Volunteer",
-      "url": "https://organization.com/",
-      "startDate": "2012-01-01",
-      "endDate": "2013-01-01",
-      "summary": "Description…",
-      "highlights": ["Awarded 'Volunteer of the Month'"]
-    }
-  ],
   "education": [
     {
-      "institution": "University",
-      "url": "https://institution.com/",
-      "area": "Software Development",
-      "studyType": "Bachelor",
-      "startDate": "2011-01-01",
-      "endDate": "2013-01-01",
-      "score": "4.0",
-      "courses": ["DB1101 - Basic SQL"]
-    }
-  ],
-  "awards": [
-    {
-      "title": "Award",
-      "date": "2014-11-01",
-      "awarder": "Company",
-      "summary": "There is no spoon."
-    }
-  ],
-  "certificates": [
-    {
-      "name": "Certificate",
-      "date": "2021-11-07",
-      "issuer": "Company",
-      "url": "https://certificate.com"
-    }
-  ],
-  "publications": [
-    {
-      "name": "Publication",
-      "publisher": "Company",
-      "releaseDate": "2014-10-01",
-      "url": "https://publication.com",
-      "summary": "Description…"
+      "institution": "IES Ribera del Tajo",
+      "url": "https://riberadeltajo.es/",
+      "area": "Desarrollo de Aplicaciones Informáticas (DAI)",
+      "studyType": "FPII",
+      "startDate": "2009-01-01",
+      "endDate": "2011-01-01",
+      "score": "9",
+      "courses": [
+        "SQL",
+        "Java",
+        "Visual Basic",
+        "PL/SQL",
+        "Javascript"
+      ]
     }
   ],
   "skills": [
@@ -185,28 +155,6 @@
       ]
     }
   ],
-  "languages": [
-    {
-      "language": "Spanish",
-      "fluency": "Native speaker"
-    },
-    {
-      "language": "English",
-      "fluency": "Technical"
-    }
-  ],
-  "interests": [
-    {
-      "name": "Wildlife",
-      "keywords": ["Ferrets", "Unicorns"]
-    }
-  ],
-  "references": [
-    {
-      "name": "Jane Doe",
-      "reference": "Reference…"
-    }
-  ],
   "projects": [
     {
       "name": "Planets fact site",
@@ -216,7 +164,8 @@
         "Responsive design",
         "Desarrollado con Qwik"
       ],
-      "url": "https://stupendous-axolotl-064aa1.netlify.app/"
+      "url": "https://stupendous-axolotl-064aa1.netlify.app/",
+      "github": "https://github.com/aaRonRJ/planets-fact-site"
     }
   ]
 }

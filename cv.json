@@ -166,6 +166,17 @@
       ],
       "url": "https://stupendous-axolotl-064aa1.netlify.app/",
       "github": "https://github.com/aaRonRJ/planets-fact-site"
+    },
+    {
+      "name": "RPLS game",
+      "isActive": true,
+      "description": "El juego de piedra, papel, lagarto, tijeras, spock de la serie Big bang theory",
+      "highlights": [
+        "Responsive design",
+        "React"
+      ],
+      "url": "https://rplsgame.netlify.app/",
+      "github": "https://github.com/aresinodev/rpsls-game"
     }
   ]
 }

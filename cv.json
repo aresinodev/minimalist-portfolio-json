@@ -2,7 +2,7 @@
   "basics": {
     "name": "Aarón Resino Jiménez",
     "label": "Frontend developer con más de 12 años de experiencia en el sector del desarrollo de software",
-    "image": "https://avatars.githubusercontent.com/u/9294060?v=4",
+    "image": "https://media.licdn.com/dms/image/C5603AQE6Mb4J3XyYEg/profile-displayphoto-shrink_800_800/0/1516558919182?e=1714003200&v=beta&t=e7PT1NO0K6mUv_AzWdDqQbdoGtkPkNaqxBL2FtQzbZI",
     "email": "aresinodeveloper@gmail.com",
     "phone": "+34 645847277",
     "url": "https://aresino.dev",
@@ -27,8 +27,8 @@
       },
       {
         "network": "Github",
-        "username": "aaRonRJ",
-        "url": "https://github.com/aaRonRJ"
+        "username": "aresinodev",
+        "url": "https://github.com/aresinodev"
       }
     ]
   },
@@ -67,92 +67,84 @@
       "startDate": "2009-01-01",
       "endDate": "2011-01-01",
       "score": "9",
-      "courses": [
-        "SQL",
-        "Java",
-        "Visual Basic",
-        "PL/SQL",
-        "Javascript"
-      ]
+      "courses": ["SQL", "Java", "Visual Basic", "PL/SQL", "Javascript"]
     }
   ],
   "skills": [
     {
       "name": "HTML",
       "level": "Master",
-      "keywords": [
-        "Desarrollo Web", "Frontend"
-      ]
+      "keywords": ["Desarrollo Web", "Frontend"]
     },
     {
       "name": "CSS",
       "level": "Master",
-      "keywords": [
-        "Desarrollo Web", "Frontend", "Diseño Responsive"
-      ]
+      "keywords": ["Desarrollo Web", "Frontend", "Diseño Responsive"]
     },
     {
       "name": "JavaScript",
       "level": "Master",
-      "keywords": [
-        "Desarrollo Web", "Frontend", "Backend", "Fullstack"
-      ]
+      "keywords": ["Desarrollo Web", "Frontend", "Backend", "Fullstack"]
     },
     {
       "name": "Tailwind",
       "level": "Avanzado",
       "keywords": [
-        "Desarrollo Web", "Frontend", "CSS Framework", "Diseño Responsive"
+        "Desarrollo Web",
+        "Frontend",
+        "CSS Framework",
+        "Diseño Responsive"
       ]
     },
     {
       "name": "TypeScript",
       "level": "Avanzado",
       "keywords": [
-        "Desarrollo Web", "Frontend", "Backend", "JavaScript Superset"
+        "Desarrollo Web",
+        "Frontend",
+        "Backend",
+        "JavaScript Superset"
       ]
     },
     {
       "name": "Node",
       "level": "Avanzado",
-      "keywords": [
-        "Desarrollo Web", "Backend", "JavaScript", "Servidor"
-      ]
+      "keywords": ["Desarrollo Web", "Backend", "JavaScript", "Servidor"]
     },
     {
       "name": "MySQL",
       "level": "Avanzado",
       "keywords": [
-        "Bases de Datos", "SQL", "Almacenamiento de Datos", "Backend"
+        "Bases de Datos",
+        "SQL",
+        "Almacenamiento de Datos",
+        "Backend"
       ]
     },
     {
       "name": "Git",
       "level": "Avanzado",
-      "keywords": [
-        "Control de Versiones", "Colaboración", "Código Fuente"
-      ]
+      "keywords": ["Control de Versiones", "Colaboración", "Código Fuente"]
     },
     {
       "name": "GitHub",
       "level": "Avanzado",
       "keywords": [
-        "Control de Versiones", "Colaboración", "Código Fuente", "Git"
+        "Control de Versiones",
+        "Colaboración",
+        "Código Fuente",
+        "Git"
       ]
     },
     {
       "name": "Angular",
       "level": "Avanzado",
-      "keywords": [
-        "Desarrollo Web", "Frontend"
-      ]
+      "keywords": ["Desarrollo Web", "Frontend"]
     },
     {
       "name": "React",
       "level": "Avanzado",
-      "keywords": [
-        "Desarrollo Web", "Frontend", "JavaScript Library", "UI"
-      ]
+      "keywords": ["Desarrollo Web", "Frontend", "JavaScript Library", "UI"]
     }
   ],
   "projects": [
@@ -160,10 +152,7 @@
       "name": "Planets fact site",
       "isActive": true,
       "description": "Información de los planetas del sistema solar",
-      "highlights": [
-        "Responsive design",
-        "Desarrollado con Qwik"
-      ],
+      "highlights": ["Responsive design", "Desarrollado con Qwik"],
       "url": "https://stupendous-axolotl-064aa1.netlify.app/",
       "github": "https://github.com/aaRonRJ/planets-fact-site"
     },
@@ -171,10 +160,7 @@
       "name": "RPLS game",
       "isActive": true,
       "description": "El juego de piedra, papel, lagarto, tijeras, spock de la serie Big bang theory",
-      "highlights": [
-        "Responsive design",
-        "React"
-      ],
+      "highlights": ["Responsive design", "React"],
       "url": "https://rplsgame.netlify.app/",
       "github": "https://github.com/aresinodev/rpsls-game"
     }

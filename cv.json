@@ -163,6 +163,14 @@
       "highlights": ["Responsive design", "React"],
       "url": "https://rplsgame.netlify.app/",
       "github": "https://github.com/aresinodev/rpsls-game"
+    },
+    {
+      "name": "Rick & Morty API",
+      "isActive": true,
+      "description": "Personajes que han salido en la serie Rick & Morty consultando su API oficial",
+      "highlights": ["Responsive design", "React", "Astro", "Tailwind"],
+      "url": "https://rickandmortyastrodev.netlify.app/",
+      "github": "https://github.com/aresinodev/rick-and-morty-astro"
     }
   ]
 }

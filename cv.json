@@ -145,6 +145,11 @@
       "name": "React",
       "level": "Avanzado",
       "keywords": ["Desarrollo Web", "Frontend", "JavaScript Library", "UI"]
+    },
+    {
+      "name": "Lit",
+      "level": "Medio",
+      "keywords": ["Desarrollo Web", "Frontend", "JavaScript Library", "UI"]
     }
   ],
   "projects": [
@@ -171,6 +176,14 @@
       "highlights": ["Responsive design", "React", "Astro", "Tailwind"],
       "url": "https://rickandmortyastrodev.netlify.app/",
       "github": "https://github.com/aresinodev/rick-and-morty-astro"
+    },
+    {
+      "name": "Weather app",
+      "isActive": true,
+      "description": "Aplicación para consultar el clima de una ciudad",
+      "highlights": ["Responsive design", "Lit Element", "CSS", "Web components"],
+      "url": "https://weather-lit-app.netlify.app/",
+      "github": "https://github.com/aresinodev/weather-app"
     }
   ]
 }

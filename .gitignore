@@ -20,5 +20,5 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
-# assets de trabajo de los artboards
-design/*/.assets/
+# artboards y material de diseño: no forman parte del sitio
+design/

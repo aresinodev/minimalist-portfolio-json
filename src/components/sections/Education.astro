@@ -4,17 +4,19 @@ import Entry from '@/components/Entry.astro'
 import { education } from '@cv'
 
 // un curso en curso no tiene fecha de fin: `new Date(null)` daría 1970
+// getUTCFullYear: las fechas ISO sin hora se parsean en UTC y getFullYear
+// las leería en la zona del build (un 1 de enero se vuelve el año anterior)
 const yearOf = (date: string | null) =>
-  date ? new Date(date).getFullYear() : null
+  date ? new Date(date).getUTCFullYear() : null
 
 const years = education.flatMap(({ startDate, endDate }) => [
   yearOf(startDate),
   yearOf(endDate),
 ])
 
-// un curso sin fecha de fin deja la serie abierta: la etiqueta cierra en
-// "actual", igual que la fila
-const ongoing = years.some((year) => year === null)
+// la serie queda abierta si hay un curso sin fecha de fin: se mira endDate,
+// no los años, para no confundirlo con un registro sin fecha de inicio
+const ongoing = education.some(({ endDate }) => endDate === null)
 const known = years.filter((year): year is number => year !== null)
 
 const tag = known.length

@@ -3,18 +3,27 @@ import Section from '@/components/Section.astro'
 import Entry from '@/components/Entry.astro'
 import { work } from '@cv'
 
+// getUTCFullYear: las fechas ISO sin hora se parsean en UTC y getFullYear
+// las leería en la zona del build (un 1 de enero se vuelve el año anterior)
 const yearOf = (date: string | null) =>
-  date ? new Date(date).getFullYear() : 'actual'
+  date ? new Date(date).getUTCFullYear() : 'actual'
 
 // el encabezado se deriva de los datos, no se escribe a mano
-const starts = work.map(({ startDate }) => new Date(startDate).getFullYear())
+const hasWork = work.length > 0
+const starts = work.map(({ startDate }) => new Date(startDate).getUTCFullYear())
 const open = work.some(({ endDate }) => endDate === null)
 const ends = work
-  .map(({ endDate }) => (endDate ? new Date(endDate).getFullYear() : null))
+  .map(({ endDate }) => (endDate ? new Date(endDate).getUTCFullYear() : null))
   .filter((year): year is number => year !== null)
 
-const tag = `${Math.min(...starts)} → ${open ? 'hoy' : String(Math.max(...ends))}`
-const note = `${work.length} etapas, un mismo oficio: producto real, en equipos reales.`
+// sin entradas no hay span que mostrar: Math.min de un array vacío da
+// Infinity y la etiqueta diría "Infinity → -Infinity"
+const tag = hasWork
+  ? `${Math.min(...starts)} → ${open ? 'hoy' : String(Math.max(...ends))}`
+  : undefined
+const note = hasWork
+  ? `${work.length} ${work.length === 1 ? 'etapa' : 'etapas'}, un mismo oficio: producto real, en equipos reales.`
+  : undefined
 ---
 
 <Section

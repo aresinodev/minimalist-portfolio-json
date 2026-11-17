@@ -1,122 +1,162 @@
 ---
-import GitHub from "@/icons/Github.astro"
-import Section from "../Section.astro"
-
-import { projects } from "@cv"
+import Section from '@/components/Section.astro'
+import GitHub from '@/icons/Github.astro'
+import { projects } from '@cv'
 ---
 
-<Section title="Proyectos">
-  <ul>
+<Section
+  id="proyectos"
+  title="Proyectos"
+  tag={`${projects.length} online`}
+  note="Cada uno con un stack distinto, por decisión, no por accidente."
+>
+  <div class="grid">
     {
-      projects.map(
-        ({ url, description, highlights, name, isActive, github }) => {
-          return (
-            <li>
-              <article>
-                <header>
-                  <h3>
-                    <a
-                      href={url}
-                      title={`Ver el proyecto ${name}`}
-                      target="_blank">
-                      {name}
-                    </a>
-                    {isActive && <span>&bull;</span>}
-                    {github && (
-                      <a
-                        class="github-code-link"
-                        href={github}
-                        target="_blank"
-                        title={`Ver código fuente del proyecto ${name}`}>
-                        <GitHub />
-                      </a>
-                    )}
-                  </h3>
-                  <p>{description}</p>
-                </header>
-                <footer>
-                  {highlights.map((highlight) => (
-                    <span>{highlight}</span>
-                  ))}
-                </footer>
-              </article>
-            </li>
-          )
-        }
-      )
+      projects.map(({ name, description, highlights, url, github }, index) => (
+        <article class="card">
+          <p class="n">{String(index + 1).padStart(2, '0')}</p>
+          <h3>{name}</h3>
+          <p class="description">{description}</p>
+          <p class="stack">
+            {highlights.map((highlight) => (
+              <span>{highlight}</span>
+            ))}
+          </p>
+          <p class="links">
+            <a class="go" href={url} target="_blank" rel="noopener noreferrer">
+              Ver sitio ↗
+            </a>
+            {github && (
+              <a
+                class="code"
+                href={github}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={`Ver código fuente del proyecto ${name}`}
+              >
+                <GitHub aria-hidden="true" />
+                <span class="sr-only">Código de {name}</span>
+              </a>
+            )}
+          </p>
+        </article>
+      ))
     }
-  </ul>
+  </div>
 </Section>
 
 <style>
-  ul {
+  .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
   }
 
-  article {
-    border-radius: 8px;
-    border: 1px solid #85939e;
-    gap: 16px;
+  .card {
+    border: 2px solid var(--ink);
+    background: #fff;
+    padding: 18px;
     display: flex;
     flex-direction: column;
-    padding: 16px;
-    height: 100%;
+    gap: 10px;
   }
 
-  article header {
+  .n {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+
+  h3 {
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+  }
+
+  .description {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
     flex: 1;
+    text-wrap: pretty;
   }
 
-  article header h3 a {
-    color: #b3c3d3;
-  }
-
-  article header h3 a:hover {
-    text-decoration: underline;
-  }
-
-  article header h3 span {
-    color: rgb(0, 255, 76);
-  }
-
-  article header p {
-    font-size: 0.75rem;
-    line-height: 1.2rem;
-    margin-bottom: 4px;
-  }
-
-  article footer {
+  .stack {
     display: flex;
     flex-wrap: wrap;
-    gap: 4px;
-    font-size: 0.6rem;
+    gap: 6px;
   }
 
-  article footer span {
-    border-radius: 6px;
-    background: #272c30;
-    border: 1px solid #85939e;
-    color: #85939e;
-    font-size: 0.6rem;
-    font-weight: 500;
-    padding: 0.2rem 0.6rem;
+  .stack span {
+    /* altura fija: el texto no deja aire de más abajo */
+    display: inline-flex;
+    align-items: center;
+    height: 20px;
+    padding: 0 7px;
+    line-height: 1;
+    white-space: nowrap;
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border: 2px solid var(--ink);
+    background: var(--paper);
   }
 
-  .github-code-link {
-    margin-left: 5px;
+  .links {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
   }
 
-  @media (width <= 700px) {
-    ul {
-      margin-inline: 0px;
-    }
+  .go {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    min-height: 32px;
+    font-weight: 700;
+    /* encoge anclado a la izquierda para que el texto no se desplace */
+    transform-origin: left center;
+    transition: transform 0.16s ease;
   }
 
-  @media print {
-    article h3 span {
-      animation-name: none;
+  .go:hover,
+  .go:focus-visible {
+    transform: scale(0.93);
+  }
+
+  .code {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    color: var(--ink);
+  }
+
+  .code:hover {
+    color: var(--accent);
+  }
+
+  :global(.sr-only) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .go:hover,
+    .go:focus-visible {
+      transform: none;
     }
   }
 </style>

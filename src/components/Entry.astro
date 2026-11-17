@@ -1,0 +1,106 @@
+---
+interface Props {
+  period: string
+  datetime?: string
+  title: string
+  subtitle?: string
+  detail?: string | null
+  href?: string
+  current?: boolean
+}
+
+const { period, datetime, title, subtitle, detail, href, current } = Astro.props
+---
+
+<article class="entry">
+  <time datetime={datetime}>{period}</time>
+
+  <div>
+    <h3>
+      {href ? <a href={href} target="_blank" rel="noopener noreferrer">{title}</a> : title}
+      {current && <span class="now">Actual</span>}
+    </h3>
+    {subtitle && <p class="role">{subtitle}</p>}
+  </div>
+
+  {detail && <p class="detail">{detail}</p>}
+</article>
+
+<style>
+  .entry {
+    display: grid;
+    grid-template-columns: 130px minmax(0, 1fr) minmax(0, 1fr);
+    gap: 8px 24px;
+    align-items: baseline;
+    border: 2px solid var(--ink);
+    background: #fff;
+    padding: 14px 16px;
+    transition:
+      box-shadow 0.15s ease,
+      transform 0.15s ease;
+  }
+
+  .entry:hover {
+    box-shadow: var(--shadow);
+    transform: translate(-2px, -2px);
+  }
+
+  time {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+  }
+
+  h3 {
+    font-size: 1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+  }
+
+  h3 a:hover {
+    color: var(--accent);
+  }
+
+  .role {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--navy);
+    margin-top: 2px;
+  }
+
+  .detail {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-wrap: pretty;
+  }
+
+  .now {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--accent);
+    border: 2px solid var(--ink);
+    padding: 0 5px;
+    margin-left: 8px;
+    vertical-align: 2px;
+  }
+
+  @media (max-width: 880px) {
+    .entry {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .entry:hover {
+      transform: none;
+    }
+  }
+</style>

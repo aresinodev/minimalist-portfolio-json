@@ -148,8 +148,18 @@ const rest = restWords.join(' ')
       grid-row: auto;
     }
 
+    /* en una sola columna el titular y el retrato quedan centrados */
+    .hero-lead {
+      text-align: center;
+    }
+
     h1 {
       font-size: clamp(2rem, 13vw, 5.7rem);
+    }
+
+    .portrait-col {
+      align-items: center;
+      text-align: center;
     }
 
     .portrait {

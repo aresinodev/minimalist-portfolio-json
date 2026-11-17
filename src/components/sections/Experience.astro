@@ -4,22 +4,25 @@ import Entry from '@/components/Entry.astro'
 import { work } from '@cv'
 
 // getUTCFullYear: las fechas ISO sin hora se parsean en UTC y getFullYear
-// las leería en la zona del build (un 1 de enero se vuelve el año anterior)
+// las leería en la zona del build (un 1 de enero se vuelve el año anterior).
+// Filas y encabezado comparten este único parseo.
 const yearOf = (date: string | null) =>
-  date ? new Date(date).getUTCFullYear() : 'actual'
+  date ? new Date(date).getUTCFullYear() : null
+
+const period = (startDate: string, endDate: string | null) =>
+  `${yearOf(startDate) ?? 'actual'} — ${yearOf(endDate) ?? 'actual'}`
 
 // el encabezado se deriva de los datos, no se escribe a mano
 const hasWork = work.length > 0
-const starts = work.map(({ startDate }) => new Date(startDate).getUTCFullYear())
-const open = work.some(({ endDate }) => endDate === null)
-const ends = work
-  .map(({ endDate }) => (endDate ? new Date(endDate).getUTCFullYear() : null))
+const known = work
+  .flatMap(({ startDate, endDate }) => [yearOf(startDate), yearOf(endDate)])
   .filter((year): year is number => year !== null)
+const open = work.some(({ endDate }) => endDate === null)
 
 // sin entradas no hay span que mostrar: Math.min de un array vacío da
 // Infinity y la etiqueta diría "Infinity → -Infinity"
 const tag = hasWork
-  ? `${Math.min(...starts)} → ${open ? 'hoy' : String(Math.max(...ends))}`
+  ? `${Math.min(...known)} → ${open ? 'hoy' : String(Math.max(...known))}`
   : undefined
 const note = hasWork
   ? `${work.length} ${work.length === 1 ? 'etapa' : 'etapas'}, un mismo oficio: producto real, en equipos reales.`
@@ -36,7 +39,7 @@ const note = hasWork
     {
       work.map(({ name, position, url, startDate, endDate, summary }) => (
         <Entry
-          period={`${yearOf(startDate)} — ${yearOf(endDate)}`}
+          period={period(startDate, endDate)}
           datetime={startDate}
           title={name}
           subtitle={position}

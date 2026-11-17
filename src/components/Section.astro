@@ -1,22 +1,66 @@
 ---
-const { title } = Astro.props
+interface Props {
+  id: string
+  title: string
+  tag?: string
+  note?: string
+}
+
+const { id, title, tag, note } = Astro.props
 ---
 
-<section>
-  {title && <h2>{title}</h2>}
+<section class="sec" id={id} aria-labelledby={`h-${id}`}>
+  <div class="sec-head">
+    <h2 id={`h-${id}`}>{title}</h2>
+    {tag && <span class="tag">{tag}</span>}
+    {note && <p class="note">{note}</p>}
+  </div>
+
   <slot />
 </section>
 
 <style>
-  section {
-    max-width: 720px;
-    margin: 0 auto 48px;
+  .sec {
+    padding: clamp(28px, 5vw, 52px) 0;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .sec-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: clamp(18px, 3vw, 28px);
+    flex-wrap: wrap;
   }
 
   h2 {
-    margin-bottom: 8px;
-    font-weight: 700;
-    line-height: 1.5;
-    font-size: 1.5rem;
+    font-size: clamp(1.3rem, 3vw, 1.9rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.035em;
+  }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 3px 8px;
+  }
+
+  .note {
+    font-size: 0.84rem;
+    color: var(--muted);
+    max-width: 46ch;
+    margin-left: auto;
+    text-wrap: pretty;
+  }
+
+  @media (max-width: 700px) {
+    .note {
+      margin-left: 0;
+    }
   }
 </style>

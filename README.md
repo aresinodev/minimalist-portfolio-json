@@ -12,7 +12,11 @@
   <img src="portada.png" alt="Portada del portfolio: retrato y titular en el hero, y las secciones de experiencia, proyectos, habilidades, formación y contacto" />
 </p>
 
-[![Built with Gentle-AI](https://raw.githubusercontent.com/Gentleman-Programming/gentle-ai/main/docs/assets/brand/built-with-gentle-ai.png)](https://github.com/Gentleman-Programming/gentle-ai)
+<p align="center">
+  <br />
+  <sub>Construido con la ayuda de</sub><br />
+  <a href="https://github.com/Gentleman-Programming/gentle-ai"><img src="https://raw.githubusercontent.com/Gentleman-Programming/gentle-ai/main/docs/assets/brand/built-with-gentle-ai.png" alt="Built with Gentle-AI" height="52" /></a>
+</p>
 
 ---
 

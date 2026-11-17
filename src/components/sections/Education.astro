@@ -3,12 +3,17 @@ import Section from '@/components/Section.astro'
 import Entry from '@/components/Entry.astro'
 import { education } from '@cv'
 
-const yearOf = (date: string) => new Date(date).getFullYear()
-const years = education.flatMap(({ startDate, endDate }) => [
-  yearOf(startDate),
-  yearOf(endDate),
-])
-const tag = `${Math.min(...years)} → ${Math.max(...years)}`
+// un curso en curso no tiene fecha de fin: `new Date(null)` daría 1970
+const yearOf = (date: string | null) =>
+  date ? new Date(date).getFullYear() : null
+
+const years = education
+  .flatMap(({ startDate, endDate }) => [yearOf(startDate), yearOf(endDate)])
+  .filter((year): year is number => year !== null)
+
+const tag = years.length
+  ? `${Math.min(...years)} → ${Math.max(...years)}`
+  : undefined
 ---
 
 <Section
@@ -22,7 +27,7 @@ const tag = `${Math.min(...years)} → ${Math.max(...years)}`
       education.map(
         ({ institution, url, area, studyType, startDate, endDate, score, courses }) => (
           <Entry
-            period={`${yearOf(startDate)} — ${yearOf(endDate)}`}
+            period={`${yearOf(startDate)} — ${yearOf(endDate) ?? 'actual'}`}
             datetime={startDate}
             title={institution}
             subtitle={studyType}

@@ -88,7 +88,9 @@ const { period, datetime, title, subtitle, detail, href, current } = Astro.props
     background: var(--accent);
     border: 2px solid var(--ink);
     padding: 0 5px;
-    margin-left: 8px;
+    /* 12px y no 8: el espacio que separaba el badge del nombre era un nodo
+       de texto y el minificador de HTML lo elimina. La separación va acá. */
+    margin-left: 12px;
     vertical-align: 2px;
   }
 

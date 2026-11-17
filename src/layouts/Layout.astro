@@ -199,6 +199,11 @@ const SECTIONS = [
       display: none !important;
     }
 
+    /* una ficha partida entre dos páginas no se lee */
+    article {
+      break-inside: avoid;
+    }
+
     body {
       background: #fff;
     }

@@ -7,12 +7,18 @@ import { education } from '@cv'
 const yearOf = (date: string | null) =>
   date ? new Date(date).getFullYear() : null
 
-const years = education
-  .flatMap(({ startDate, endDate }) => [yearOf(startDate), yearOf(endDate)])
-  .filter((year): year is number => year !== null)
+const years = education.flatMap(({ startDate, endDate }) => [
+  yearOf(startDate),
+  yearOf(endDate),
+])
 
-const tag = years.length
-  ? `${Math.min(...years)} → ${Math.max(...years)}`
+// un curso sin fecha de fin deja la serie abierta: la etiqueta cierra en
+// "actual", igual que la fila
+const ongoing = years.some((year) => year === null)
+const known = years.filter((year): year is number => year !== null)
+
+const tag = known.length
+  ? `${Math.min(...known)} → ${ongoing ? 'actual' : Math.max(...known)}`
   : undefined
 ---
 

@@ -5,13 +5,23 @@ import { work } from '@cv'
 
 const yearOf = (date: string | null) =>
   date ? new Date(date).getFullYear() : 'actual'
+
+// el encabezado se deriva de los datos, no se escribe a mano
+const starts = work.map(({ startDate }) => new Date(startDate).getFullYear())
+const open = work.some(({ endDate }) => endDate === null)
+const ends = work
+  .map(({ endDate }) => (endDate ? new Date(endDate).getFullYear() : null))
+  .filter((year): year is number => year !== null)
+
+const tag = `${Math.min(...starts)} → ${open ? 'hoy' : String(Math.max(...ends))}`
+const note = `${work.length} etapas, un mismo oficio: producto real, en equipos reales.`
 ---
 
 <Section
   id="experiencia"
   title="Experiencia"
-  tag="2017 → hoy"
-  note="Cuatro etapas, un mismo oficio: producto real, en equipos reales."
+  tag={tag}
+  note={note}
 >
   <div class="jobs">
     {

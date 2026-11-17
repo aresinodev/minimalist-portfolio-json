@@ -13,7 +13,7 @@ Rama `feat/redesign-modern-ui` (desde `develop`). Dirección elegida: `design/po
 - **S7** «cuando se hace hover en los links de este tipo, en vez de que ponga un recuadro de fonde naranja, que haga un efecto de encoger el texto» · «quitamos el subrayado. dejamos solamente que se haga más pequeñito el texto».
 - **S8** «las cajas de este tipo, veo que algunas tienen espacio bajo el texto y otras están ajustadas. quiero que todas queden iguales. sin tanto espacio por abajo.»
 - **S9** «el hover de estas tags lo quitamos. no quiero que se ponga el fondo de ningun color cuando se hace hover sobre ellos.»
-- **S10** «La parte de formacion debe de ser una seccion más como la de proyectos, experiencia, etc. Añade las 2 ultimas formaciones.»
+- **S10** «La parte de formacion debe de ser una seccion más como la de proyectos, experiencia, etc.» · «dejemos solamente esa formacion, no añadimos ninguna mas.»
 - **S11** «Eliminamos el numero de telefono»
 - **S12** «Esto debería de estar a la izquierda encima de la foto, el titulo y lo otro» (etiqueta) → después «Eliminalo».
 - **S13** «Deberia de estar la parte superior de la imagen alineado con la parte superior del titulo» · «quiero este alineado la parte superior de la foto, no la sombra».
@@ -30,7 +30,7 @@ Rama `feat/redesign-modern-ui` (desde `develop`). Dirección elegida: `design/po
 - [x] T4 Experiencia con filas compartidas (S1, S8) — commit
 - [x] T5 Proyectos con hover de encogido (S7) — commit
 - [x] T6 Habilidades sin hover (S8, S9) — commit
-- [x] T7 Formación como sección (S10) — commit; las 2 formaciones extra quedan pendientes de datos
+- [x] T7 Formación como sección única (S10) — commit
 - [x] T8 Contacto y pie con Cmd+K (S11) — commit
 - [x] T9 Limpieza y build en verde (S1) — commit
 - [x] T10 Contacto, pie con Cmd+K (S11) — commit
@@ -41,5 +41,6 @@ Rama `feat/redesign-modern-ui` (desde `develop`). Dirección elegida: `design/po
 - L2 Dirección elegida: cartel con crema, tinta, naranja `#ff6a00` y azul marino `#1e2a78`, tras tres tandas de artboards (01-11).
 - L3 El alcance de este documento es el rediseño visual. La actualización de Astro 4.3 → 7 y Node 20 → 24 sigue fuera del documento, como unidad aparte.
 - L4 La foto pasó de `imgur` a asset local (`src/assets/retrato.jpg`), 440×440, en blanco y negro vía CSS.
-- L5 Las dos formaciones nuevas de S10 no se pueden añadir sin datos: `cv.json` tiene una sola entrada en `education` y cero certificados. No se inventan.
+- L5 (histórico, superado por L7) Las dos formaciones nuevas de S10 no se pueden añadir sin datos: `cv.json` tiene una sola entrada en `education` y cero certificados. No se inventan.
 - L6 Corte de commits: `e17d15d` (T1-T7, 1203 líneas cambiadas: sistema visual, hero y secciones) y el commit siguiente (T8-T10: contacto, pie y limpieza). El rediseño reescribe casi toda la página, así que el primer slice excede el objetivo de ~400 líneas; se deja registrado el límite entre slices para la revisión.
+- L7 «dejemos solamente esa formacion, no añadimos ninguna mas.» — se retira la parte de S10 que pedía añadir dos formaciones. La sección queda con la única entrada real de `cv.json`; no se toca código porque la implementación ya estaba así.

@@ -1,179 +1,160 @@
 ---
-import { basics } from "@cv"
+import { Image } from 'astro:assets'
+import { basics } from '@cv'
 
-import Section from "@/components/Section.astro"
-import Mail from "@/icons/Mail.astro"
-import Phone from "@/icons/Phone.astro"
-import LinkedIn from "@/icons/LinkedIn.astro"
-import Github from "@/icons/Github.astro"
-import X from "@/icons/X.astro"
-import WorldMap from "@/icons/WorldMap.astro"
+// La foto vive en el repo: el campo `image` de cv.json apuntaba a imgur
+// y el sitio no debe depender de un tercero para un asset propio.
+import retrato from '@/assets/retrato.jpg'
 
-const { name, label, image, location, profiles, phone, email } = basics
+const { name, headline, summary, location } = basics
 const { city, region } = location
 
-const SOCIAL_ICONS: Record<string, any> = {
-  Github,
-  LinkedIn,
-  X,
-}
-
-const linkedIn = profiles.find(({ network }) => network === "LinkedIn")
-const linkedInUrl = linkedIn?.url
-const printInfo = [email, phone, linkedInUrl].filter(Boolean).join(" • ")
+const [firstWord, ...restWords] = headline.split(' ')
+const rest = restWords.join(' ')
 ---
 
-<Section>
-  <div class="container">
-    <div class="info">
-      <h1>{name}</h1>
-      <h2>{label}</h2>
-      <span>
-        <WorldMap />
-        {city}, {region}
-      </span>
-      <footer class="print">
-        {printInfo}
-      </footer>
-      <footer class="no-print">
-        {
-          email && (
-            <a
-              href={`mailto:${email}`}
-              title={`Enviar un correo electrónico a ${name} al correo ${email}`}
-              target="_blank"
-              rel="noopener noreferrer">
-              <Mail />
-            </a>
-          )
-        }
-        {
-          phone && (
-            <a
-              href={`tel:${phone}`}
-              title={`Llamar por teléfono a ${name} al número ${phone}`}
-              target="_blank"
-              rel="noopener noreferrer">
-              <Phone />
-            </a>
-          )
-        }
-        {
-          profiles.map(({ network, username, url }) => {
-            const Icon = SOCIAL_ICONS[network]
-
-            return (
-              <a
-                href={url}
-                title={`Visitar el perfil de ${username} en ${network}`}
-                target="_blank"
-                rel="noopener noreferrer">
-                <Icon />
-              </a>
-            )
-          })
-        }
-      </footer>
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-top">
+    <div class="hero-lead">
+      <h1 id="hero-title">
+        {firstWord}<br />
+        <span class="box">{rest}</span>
+      </h1>
     </div>
-    <figure>
-      <img src={image} alt={name} />
-    </figure>
+
+    <div class="portrait-col">
+      <figure class="portrait">
+        <Image
+          src={retrato}
+          alt={`Retrato de ${name}`}
+          width={440}
+          height={440}
+          loading="eager"
+        />
+      </figure>
+      <p class="where">{city} · {region}</p>
+    </div>
   </div>
-</Section>
+
+  <div class="hero-side">
+    <p class="summary">{summary}</p>
+  </div>
+</section>
 
 <style>
-  .container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
+  .hero {
+    padding: clamp(32px, 6vw, 72px) 0 clamp(28px, 4vw, 48px);
+    border-bottom: 2px solid var(--ink);
   }
 
-  .info {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding-right: 32px;
+  /* retrato y titular como un solo bloque, centrado en el ancho */
+  .hero-top {
+    display: grid;
+    grid-template-columns: 190px minmax(0, 1fr);
+    column-gap: clamp(20px, 3vw, 40px);
+    width: min(100%, 780px);
+    margin-inline: auto;
+    align-items: start;
+  }
+
+  .hero-lead {
+    grid-column: 2;
+    grid-row: 1;
+    container-type: inline-size;
   }
 
   h1 {
-    font-size: 2rem;
+    font-size: clamp(2.4rem, 16cqi, 5.7rem);
+    line-height: 0.86;
+    letter-spacing: -0.05em;
+    font-weight: 800;
+    text-transform: uppercase;
   }
 
-  h2 {
-    color: #b3c3d3;
-    font-weight: 500;
-    font-size: 1.1rem;
-    text-wrap: balance;
+  .box {
+    display: inline-block;
+    background: var(--accent);
+    border: 2px solid var(--ink);
+    box-shadow: var(--shadow);
+    padding: 0 0.08em;
+    /* el margen inferior reserva sitio para la sombra de 5px */
+    margin: 0.06em 0 0.26em 0;
   }
 
-  img {
-    aspect-ratio: 1/1;
+  .portrait-col {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: start;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .portrait {
+    background: #fff;
+    border: 2px solid var(--ink);
+    box-shadow: var(--shadow);
+    /* lo que se alinea con el capóptico del titular es la fotografía, no
+       el marco: 8.6px de aire del line-height 0.86 menos 2px del borde */
+    margin-top: calc(8.6px - 2px);
+  }
+
+  .portrait :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
-    width: 128px;
-    border-radius: 16px;
+    filter: grayscale(1) contrast(1.12);
   }
 
-  span {
-    color: #85939e;
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    font-size: 0.85rem;
-    letter-spacing: -0.05rem;
+  .where {
+    font-family: var(--mono);
+    font-size: 0.57rem;
+    line-height: 1.4;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--muted);
   }
 
-  footer {
-    font-size: 0.65rem;
-    display: flex;
-    gap: 4px;
-    margin-top: 8px;
+  .hero-side {
+    border: 2px solid var(--ink);
+    background: #fff;
+    padding: 16px;
+    margin-top: clamp(14px, 1.8vw, 22px);
   }
 
-  footer a {
-    color: #85939e;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #85939e;
-    padding: 4px;
-    height: 32px;
-    width: 32px;
-    border-radius: 6px;
-    transition: all 0.3s ease;
+  .summary {
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    text-wrap: pretty;
   }
 
-  footer a:hover {
-    background: #85939e;
-    border: 1px solid #ddd;
-    color: #ddd;
+  @media (max-width: 1080px) {
+    .hero-top {
+      grid-template-columns: 176px minmax(0, 1fr);
+    }
   }
 
-  @media (width <= 700px) {
-    .container {
-      flex-direction: column-reverse;
+  @media (max-width: 700px) {
+    .hero-top {
+      grid-template-columns: minmax(0, 1fr);
+      width: 100%;
     }
 
-    .info {
-      justify-content: center;
-      align-items: center;
-      padding-right: 0;
-      text-align: center;
+    .hero-lead,
+    .portrait-col {
+      grid-column: auto;
+      grid-row: auto;
     }
 
-    figure {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    h1 {
+      font-size: clamp(2rem, 13vw, 5.7rem);
     }
 
-    h2 {
-      text-wrap: balance;
-    }
-
-    figure {
-      margin: 0 auto;
+    .portrait {
+      width: min(220px, 62%);
+      margin-top: calc(1.3vw - 2px);
     }
   }
 </style>

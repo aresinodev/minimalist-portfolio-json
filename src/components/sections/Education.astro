@@ -1,68 +1,56 @@
 ---
-import Section from "../Section.astro"
+import Section from '@/components/Section.astro'
+import Entry from '@/components/Entry.astro'
+import { education } from '@cv'
 
-import { education } from "@cv"
+// un curso en curso no tiene fecha de fin: `new Date(null)` daría 1970
+// getUTCFullYear: las fechas ISO sin hora se parsean en UTC y getFullYear
+// las leería en la zona del build (un 1 de enero se vuelve el año anterior)
+const yearOf = (date: string | null) =>
+  date ? new Date(date).getUTCFullYear() : null
+
+const years = education.flatMap(({ startDate, endDate }) => [
+  yearOf(startDate),
+  yearOf(endDate),
+])
+
+// la serie queda abierta si hay un curso sin fecha de fin: se mira endDate,
+// no los años, para no confundirlo con un registro sin fecha de inicio
+const ongoing = education.some(({ endDate }) => endDate === null)
+const known = years.filter((year): year is number => year !== null)
+
+const tag = known.length
+  ? `${Math.min(...known)} → ${ongoing ? 'actual' : Math.max(...known)}`
+  : undefined
 ---
 
-<Section title="Educación">
-  <ul>
+<Section
+  id="formacion"
+  title="Formación"
+  tag={tag}
+  note="Formación reglada, con los contenidos que sigo usando hoy."
+>
+  <div class="rows">
     {
-      education.map(({ institution, startDate, endDate, area }) => {
-        const startYear = new Date(startDate).getFullYear()
-        const endYear =
-          endDate != null ? new Date(endDate).getFullYear() : "Actual"
-        const years = `${startYear} - ${endYear}`
-
-        return (
-          <li>
-            <article>
-              <header>
-                <div>
-                  <h3>{institution}</h3>
-                </div>
-
-                <time>{years}</time>
-              </header>
-
-              <footer>
-                <p>{area}</p>
-              </footer>
-            </article>
-          </li>
+      education.map(
+        ({ institution, url, area, studyType, startDate, endDate, score, courses }) => (
+          <Entry
+            period={`${yearOf(startDate)} — ${yearOf(endDate) ?? 'actual'}`}
+            datetime={startDate}
+            title={institution}
+            subtitle={studyType}
+            detail={`${area}. Nota media ${score}. ${courses.join(', ')}.`}
+            href={url}
+          />
         )
-      })
+      )
     }
-  </ul>
+  </div>
 </Section>
 
 <style>
-  ul {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-  }
-
-  article h3 {
-    font-weight: 500;
-    color: #b3c3d3;
-  }
-
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 4px;
-  }
-
-  time {
-    color: #85939e;
-    font-size: 0.85rem;
-    min-width: 102px;
-  }
-
-  @media (width <= 700px) {
-    time {
-      text-align: right;
-    }
+  .rows {
+    display: grid;
+    gap: 12px;
   }
 </style>

@@ -1,53 +1,70 @@
 ---
+import { basics } from '@cv'
+
 interface Props {
   title: string
 }
 
 const { title } = Astro.props
+const { name } = basics
+
+const SECTIONS = [
+  { href: '#experiencia', label: 'Experiencia' },
+  { href: '#proyectos', label: 'Proyectos' },
+  { href: '#habilidades', label: 'Habilidades' },
+  { href: '#formacion', label: 'Formación' },
+]
 ---
 
 <!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
+    <meta name="description" content={`Portfolio de ${name}`} />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.webp" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
   <body>
-    <slot />
+    <a class="skip" href="#contenido">Saltar al contenido</a>
+
+    <header class="top">
+      <div class="top-in">
+        <p class="id">{name}</p>
+        <nav aria-label="Secciones del portfolio">
+          {
+            SECTIONS.map(({ href, label }) => (
+              <a href={href}>{label}</a>
+            ))
+          }
+        </nav>
+      </div>
+    </header>
+
+    <div class="wrap">
+      <slot />
+      <slot name="footer" />
+    </div>
   </body>
 </html>
 
 <style is:global>
-  html {
-    font-family:
-      Menlo,
-      Monaco,
-      Lucida Console,
-      "Courier New",
-      Courier,
-      monospace;
-    background: #272c30;
-    letter-spacing: -0.025rem;
-  }
+  :root {
+    --paper: #f4f1e6;
+    --ink: #101010;
+    --ink-soft: #2b2b2b;
+    --muted: #5d5b52;
+    --accent: #ff6a00;
+    --navy: #1e2a78;
 
-  body,
-  figure {
-    margin: 0;
-    padding: 0;
-  }
+    --sans:
+      system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+      sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-  a {
-    text-decoration: none;
-  }
-
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+    --pad: clamp(18px, 4vw, 56px);
+    --shadow: 5px 5px 0 var(--ink);
   }
 
   *,
@@ -56,53 +73,148 @@ const { title } = Astro.props
     box-sizing: border-box;
   }
 
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: -0.012em;
+    -webkit-font-smoothing: antialiased;
+  }
+
   h1,
   h2,
   h3,
-  h4 {
+  h4,
+  p,
+  ul,
+  ol,
+  dl,
+  dd,
+  figure {
     margin: 0;
-    font-family:
-      system-ui,
-      -apple-system,
-      BlinkMacSystemFont,
-      "Segoe UI",
-      Roboto,
-      Oxygen,
-      Ubuntu,
-      Cantarell,
-      "Open Sans",
-      "Helvetica Neue",
-      sans-serif;
-    color: #fff;
   }
 
-  p {
-    color: #bec5cb;
-    font-size: 0.9rem;
-    line-height: 1.5;
-    margin: 0;
-    text-wrap: pretty;
+  ul,
+  ol {
+    list-style: none;
+    padding: 0;
   }
 
-  .print {
-    display: none !important;
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* el anillo azul no llega a 3:1 sobre naranja: ahí va en tinta */
+  :focus-visible {
+    outline: 3px solid var(--navy);
+    outline-offset: 2px;
+  }
+
+  .top a:focus-visible,
+  .contact a:focus-visible {
+    outline-color: var(--ink);
+    outline-offset: 3px;
+  }
+
+  .skip {
+    position: absolute;
+    left: -9999px;
+    background: var(--ink);
+    color: var(--accent);
+    padding: 10px 14px;
+    font-weight: 700;
+    z-index: 30;
+  }
+
+  .skip:focus {
+    left: 14px;
+    top: 14px;
+  }
+
+  .wrap {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 var(--pad) clamp(40px, 6vw, 72px);
+  }
+
+  /* ---------- barra superior ---------- */
+  .top {
+    border-bottom: 2px solid var(--ink);
+    background: var(--accent);
+  }
+
+  .top-in {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 12px var(--pad);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .top .id {
+    font-weight: 800;
+    font-size: 0.86rem;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+
+  .top nav {
+    display: flex;
+    gap: 8px;
+    margin-left: auto;
+    flex-wrap: wrap;
+  }
+
+  .top nav a {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border: 2px solid var(--ink);
+    border-radius: 999px;
+    padding: 4px 10px;
+    min-height: 28px;
+    display: inline-flex;
+    align-items: center;
+    transition:
+      background 0.15s ease,
+      color 0.15s ease;
+  }
+
+  .top nav a:hover {
+    background: var(--ink);
+    color: var(--accent);
   }
 
   @media print {
-    .no-print {
-      display: none !important;
-    }
-
-    .print {
-      display: block !important;
-    }
-
+    .top,
+    .skip,
     astro-dev-toolbar {
       display: none !important;
     }
 
+    /* una ficha partida entre dos páginas no se lee */
     article {
       break-inside: avoid;
+    }
+
+    body {
+      background: #fff;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      transition: none !important;
+      animation: none !important;
     }
   }
 </style>

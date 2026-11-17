@@ -16,7 +16,7 @@ export interface CV {
 interface Basics {
   name: string
   label: string
-  image: string
+  headline: string
   email: string
   phone: string
   url: string

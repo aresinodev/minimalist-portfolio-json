@@ -19,3 +19,6 @@ pnpm-debug.log*
 
 # macOS-specific files
 .DS_Store
+
+# artboards y material de diseño: no forman parte del sitio
+design/

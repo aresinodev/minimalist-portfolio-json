@@ -1,88 +1,60 @@
 ---
-import Section from "../Section.astro"
+import Section from '@/components/Section.astro'
+import Entry from '@/components/Entry.astro'
+import { work } from '@cv'
 
-import { work } from "@cv"
+// getUTCFullYear: las fechas ISO sin hora se parsean en UTC y getFullYear
+// las leería en la zona del build (un 1 de enero se vuelve el año anterior).
+// Filas y encabezado comparten este único parseo.
+const yearOf = (date: string | null) =>
+  date ? new Date(date).getUTCFullYear() : null
+
+const period = (startDate: string, endDate: string | null) =>
+  `${yearOf(startDate) ?? 'actual'} — ${yearOf(endDate) ?? 'actual'}`
+
+// el encabezado se deriva de los datos, no se escribe a mano
+const hasWork = work.length > 0
+const known = work
+  .flatMap(({ startDate, endDate }) => [yearOf(startDate), yearOf(endDate)])
+  .filter((year): year is number => year !== null)
+const open = work.some(({ endDate }) => endDate === null)
+
+// sin entradas no hay span que mostrar: Math.min de un array vacío da
+// Infinity y la etiqueta diría "Infinity → -Infinity"
+const tag = hasWork
+  ? `${Math.min(...known)} → ${open ? 'hoy' : String(Math.max(...known))}`
+  : undefined
+const note = hasWork
+  ? `${work.length} ${work.length === 1 ? 'etapa' : 'etapas'}, un mismo oficio: producto real, en equipos reales.`
+  : undefined
 ---
 
-<Section title="Experiencia">
-  <ul>
+<Section
+  id="experiencia"
+  title="Experiencia"
+  tag={tag}
+  note={note}
+>
+  <div class="jobs">
     {
-      work.map(
-        ({ name, startDate, endDate, position, summary, url }) => {
-          const startYear = new Date(startDate).getFullYear()
-          const endYear =
-            endDate !== null ? new Date(endDate).getFullYear() : "Actual"
-          const years = `${startYear} - ${endYear}`
-
-          return (
-            <li>
-              <article>
-                <header>
-                  <div>
-                    <h3>
-                      <a href={url} title={`Ver ${name}`} target="_blank">
-                        {name}
-                      </a>
-                    </h3>
-                    <h4>{position}</h4>
-                  </div>
-
-                  <time>{years}</time>
-                </header>
-
-                <footer>
-                  <p>{summary}</p>
-                </footer>
-              </article>
-            </li>
-          )
-        }
-      )
+      work.map(({ name, position, url, startDate, endDate, summary }) => (
+        <Entry
+          period={period(startDate, endDate)}
+          datetime={startDate}
+          title={name}
+          subtitle={position}
+          detail={summary}
+          href={url}
+          current={endDate === null}
+        />
+      ))
     }
-  </ul>
+  </div>
 </Section>
 
 <style>
-  ul {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-  }
-
-  article h3 {
-    font-weight: 500;
-    color: #b3c3d3;
-  }
-
-  article a {
-    color: #b3c3d3;
-  }
-
-  article a:hover {
-    text-decoration: underline;
-  }
-
-  article h4 {
-    color: #85939e;
-    font-weight: 400;
-  }
-
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 4px;
-  }
-
-  time {
-    color: #85939e;
-    font-size: 0.85rem;
-    min-width: 102px;
-  }
-
-  @media (width <= 700px) {
-    time {
-      text-align: right;
-    }
+  .jobs {
+    display: grid;
+    gap: 12px;
   }
 </style>

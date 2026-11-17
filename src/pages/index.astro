@@ -1,41 +1,27 @@
 ---
-import Layout from "@/layouts/Layout.astro"
+import Layout from '@/layouts/Layout.astro'
 
-import About from "@/components/sections/About.astro"
-import Education from "@/components/sections/Education.astro"
-import Experience from "@/components/sections/Experience.astro"
-import Hero from "@/components/sections/Hero.astro"
-import KeyboardManager from "@/components/KeyboardManager.astro"
-import Projects from "@/components/sections/Projects.astro"
-import Skills from "@/components/sections/Skills.astro"
+import Hero from '@/components/sections/Hero.astro'
+import Experience from '@/components/sections/Experience.astro'
+import Projects from '@/components/sections/Projects.astro'
+import Skills from '@/components/sections/Skills.astro'
+import Education from '@/components/sections/Education.astro'
+import Contact from '@/components/sections/Contact.astro'
+import KeyboardManager from '@/components/KeyboardManager.astro'
 
-import { basics } from "@cv"
+import { basics } from '@cv'
 const { name, label } = basics
 ---
 
 <Layout title={`Portfolio de ${name} - ${label}`}>
-  <main>
+  <main id="contenido">
     <Hero />
-    <About />
     <Experience />
-    <Education />
     <Projects />
     <Skills />
+    <Education />
+    <Contact />
   </main>
 
-  <KeyboardManager />
+  <KeyboardManager slot="footer" />
 </Layout>
-
-<style>
-  main {
-    padding: 4rem;
-    margin: auto;
-    width: 100%;
-  }
-
-  @media (width <= 700px) {
-    main {
-      padding: 2rem;
-    }
-  }
-</style>

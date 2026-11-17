@@ -70,7 +70,11 @@ const profilesInfo = profiles.map(({ network, url }) => {
     }
   </nav>
 
-  <p class="hint">Pulsá <kbd>Cmd</kbd> + <kbd>K</kbd> para la paleta de comandos</p>
+  <p class="hint">
+    <button class="palette" type="button" aria-haspopup="dialog">
+      Pulsá <kbd>Cmd</kbd> + <kbd>K</kbd> o tocá acá para la paleta
+    </button>
+  </p>
 </footer>
 
 <ninja-keys
@@ -90,7 +94,15 @@ const profilesInfo = profiles.map(({ network, url }) => {
     hotkey: string
   }
 
-  const ninja = document.querySelector('ninja-keys')
+  type NinjaKeys = HTMLElement & {
+    data: unknown
+    open: (options?: { parent?: string }) => void
+  }
+
+  const ninja = document.querySelector('ninja-keys') as NinjaKeys | null
+  const paletteTrigger = document.querySelector<HTMLButtonElement>('.palette')
+
+  paletteTrigger?.addEventListener('click', () => ninja?.open())
 
   if (ninja !== null) {
     const info = ninja.getAttribute('data-info') ?? '[]'
@@ -151,6 +163,21 @@ const profilesInfo = profiles.map(({ network, url }) => {
   }
 
   .foot a:hover {
+    color: var(--ink);
+  }
+
+  .palette {
+    font: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+    color: inherit;
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .palette:hover {
     color: var(--ink);
   }
 

@@ -2,19 +2,25 @@
 import Section from '@/components/Section.astro'
 import GitHub from '@/icons/Github.astro'
 import { projects } from '@cv'
+
+// la etiqueta cuenta solo lo que está en línea: `isActive` es el dato
+const online = projects.filter(({ isActive }) => isActive).length
 ---
 
 <Section
   id="proyectos"
   title="Proyectos"
-  tag={`${projects.length} online`}
+  tag={`${online} online`}
   note="Cada uno con un stack distinto, por decisión, no por accidente."
 >
   <div class="grid">
     {
-      projects.map(({ name, description, highlights, url, github }, index) => (
+      projects.map(({ name, description, highlights, url, github, isActive }, index) => (
         <article class="card">
-          <p class="n">{String(index + 1).padStart(2, '0')}</p>
+          <p class="n">
+            {String(index + 1).padStart(2, '0')}
+            {!isActive && <span class="state">Archivado</span>}
+          </p>
           <h3>{name}</h3>
           <p class="description">{description}</p>
           <p class="stack">
@@ -66,6 +72,16 @@ import { projects } from '@cv'
     font-size: 0.68rem;
     letter-spacing: 0.1em;
     color: var(--muted);
+  }
+
+  .state {
+    font-family: var(--mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+    border: 2px solid var(--ink);
+    background: var(--paper);
+    padding: 0 5px;
+    margin-left: 6px;
   }
 
   h3 {

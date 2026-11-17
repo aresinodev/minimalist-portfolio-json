@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # artboards y material de diseño: no forman parte del sitio
 design/
+
+# artefactos de gentle-shell
+odd/

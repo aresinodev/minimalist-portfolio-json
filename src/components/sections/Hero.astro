@@ -4,7 +4,7 @@ import { basics } from '@cv'
 
 // La foto vive en el repo: el campo `image` de cv.json apuntaba a imgur
 // y el sitio no debe depender de un tercero para un asset propio.
-import retrato from '@/assets/retrato.jpg'
+import retrato from '@/assets/retrato.avif'
 
 const { name, headline, summary, location } = basics
 const { city, region } = location
@@ -29,6 +29,8 @@ const rest = restWords.join(' ')
           alt={`Retrato de ${name}`}
           width={440}
           height={440}
+          format="avif"
+          quality={62}
           loading="eager"
         />
       </figure>

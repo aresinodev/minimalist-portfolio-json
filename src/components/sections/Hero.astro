@@ -1,10 +1,10 @@
 ---
-import { Image } from 'astro:assets'
+import { Picture } from 'astro:assets'
 import { basics } from '@cv'
 
 // La foto vive en el repo: el campo `image` de cv.json apuntaba a imgur
 // y el sitio no debe depender de un tercero para un asset propio.
-import retrato from '@/assets/retrato.jpg'
+import retrato from '@/assets/retrato.avif'
 
 const { name, headline, summary, location } = basics
 const { city, region } = location
@@ -24,11 +24,14 @@ const rest = restWords.join(' ')
 
     <div class="portrait-col">
       <figure class="portrait">
-        <Image
+        <Picture
           src={retrato}
+          formats={['avif', 'webp']}
+          fallbackFormat="webp"
           alt={`Retrato de ${name}`}
           width={440}
           height={440}
+          quality={62}
           loading="eager"
         />
       </figure>
@@ -97,6 +100,10 @@ const rest = restWords.join(' ')
     /* lo que se alinea con el capóptico del titular es la fotografía, no
        el marco: 8.6px de aire del line-height 0.86 menos 2px del borde */
     margin-top: calc(8.6px - 2px);
+  }
+
+  .portrait :global(picture) {
+    display: block;
   }
 
   .portrait :global(img) {

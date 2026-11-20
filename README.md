@@ -70,7 +70,7 @@ Experiencia, proyectos, habilidades y formación se leen de ahí: editar el JSON
 página. Las etiquetas de sección —el rango de años, cuántos proyectos están en línea— se
 calculan a partir de los datos, no están escritas a mano.
 
-El retrato es `src/assets/retrato.jpg`: Astro lo optimiza en el build y el CSS lo pasa a
+El retrato es `src/assets/retrato.avif`: Astro lo reencoda en el build y el CSS lo pasa a
 blanco y negro para que el único color de la página sea el naranja.
 
 ## Deploy
